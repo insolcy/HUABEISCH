@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>华北机电学院管理平台</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<link href="css/zzsc.css" rel="stylesheet">
+		<script src="js/modernizr.custom.js"></script>
+	<style type="text/css">
+		ul{padding:0;margin:0;list-style:none;}
+		a{text-decoration:none;}
+/* box */
+		.box{width:1200px;height:338px;border:1px solid #aaa;border-bottom:4px solid #f9514e;margin:30px auto;background:url(images/wood.jpg) no-repeat center;position:relative;}
+		.b1,.b2,.b3{position:absolute;overflow:hidden;}
+		.b1{width:600px;height:338px;top:0;left:0;}
+		.b2,.b3{width:280px;height:158px;right:0;}
+		.b2{top:0;}
+		.b3{top:180px;}
+		.lst{width:2000em;position:absolute;}
+		.lst li{float:left;}
+		.lst1 li{width:600px;height:338px;}
+		.lst2 li,.lst3 li{width:280px;height:158px;}
+		.lst3 li{float:none;}
+		.lst img{width:100%;}
+		.cen{width:300px;height:318px;padding:10px;background:rgba(0,0,0,.4);position:absolute;top:0;left:600px;}
+		.cenTit{padding-bottom:5px;border-bottom:1px solid #aaa;font-size:18px;color:#eee;font-weight:normal;}
+		.wrd{padding-top:5px;border-top:1px solid #;font-size:14px;line-height:20px;color:#e1e1e1;}
+		.wrd a{font-size:12px;color:#f60;}
+		.cen1{width:280px;height:22px;background:rgba(0,0,0,.6);color:#fff;line-height:22px;text-align:center;position:absolute;top:158px;right:0;}
+		.arr{display:inline-block;width:51px;height:45px;background:url(images/arr.png) no-repeat;cursor:pointer;position:absolute;bottom:10px;z-index:9;}
+		.lef{background-position:0 0;left:700px;}
+		.rig{background-position:-52px 0;right:380px;}
+	</style>
+</head>
+
+
+<!--这里写JSP-->
+
+<body>
+<div class="box">
+	<div class="b b1">
+		<ul class="lst lst1">
+			<li><img src="images/1.jpg" alt="" /></li>
+			<li><img src="images/2.jpg" alt="" /></li>
+			<li><img src="images/3.jpg" alt="" /></li>
+			<li><img src="images/4.jpg" alt="" /></li>
+			<li><img src="images/5.jpg" alt="" /></li>
+		</ul>
+	</div>
+	<div class="b b2">
+		<ul class="lst lst2">
+			<li><img src="images/2.jpg" alt="" /></li>
+			<li><img src="images/3.jpg" alt="" /></li>
+			<li><img src="images/4.jpg" alt="" /></li>
+			<li><img src="images/5.jpg" alt="" /></li>
+			<li><img src="images/1.jpg" alt="" /></li>
+		</ul>
+	</div>
+	<div class="b3">
+		<ul class="lst lst3">
+			<li><img src="images/3.jpg" alt="" /></li>
+			<li><img src="images/4.jpg" alt="" /></li>
+			<li><img src="images/5.jpg" alt="" /></li>
+			<li><img src="images/1.jpg" alt="" /></li>
+			<li><img src="images/2.jpg" alt="" /></li>
+		</ul>
+	</div>
+	<div class="cen">
+		<h3 class="cenTit">公告栏</h3>
+		<p class="wrd">开学啦开学啦开学啦～～！！！<a target="_blank" href="#">【查看更多】</a></p>
+	</div>
+	<div class="cen1">华北机电学院教务管理系统</div>
+	<span class="arr lef"></span>
+	<span class="arr rig"></span>
+</div>
+<div class="mockup-content">
+		<div class="morph-button morph-button-modal morph-button-modal-2 morph-button-fixed">
+			<button type="button">登陆</button>
+				<div class="morph-content">
+					<div>
+						<div class="content-style-form content-style-form-1">
+									<span class="icon icon-close">关闭</span>
+									<h2>登陆</h2>
+									<form>
+										<p><label>账号</label><input type="text" /></p>
+										<p><label>密码</label><input type="password" /></p>
+										<p><button id="submit">登陆</button></p>
+									</form>
+						</div>
+					</div>
+				</div>
+		</div>
+</div>
+
+		<script src="js/classie.js"></script>
+		<script src="js/uiMorphingButton_fixed.js"></script>
+		<script>
+			(function() {
+				var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+				// trick to prevent scrolling when opening/closing button
+				function noScrollFn() {
+					window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+				}
+
+				function noScroll() {
+					window.removeEventListener( 'scroll', scrollHandler );
+					window.addEventListener( 'scroll', noScrollFn );
+				}
+
+				function scrollFn() {
+					window.addEventListener( 'scroll', scrollHandler );
+				}
+
+				function canScroll() {
+					window.removeEventListener( 'scroll', noScrollFn );
+					scrollFn();
+				}
+
+				function scrollHandler() {
+					if( !didScroll ) {
+						didScroll = true;
+						setTimeout( function() { scrollPage(); }, 60 );
+					}
+				};
+
+				function scrollPage() {
+					scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+					didScroll = false;
+				};
+
+				scrollFn();
+
+				[].slice.call( document.querySelectorAll( '.morph-button' ) ).forEach( function( bttn ) {
+					new UIMorphingButton( bttn, {
+						closeEl : '.icon-close',
+						onBeforeOpen : function() {
+							// don't allow to scroll
+							noScroll();
+						},
+						onAfterOpen : function() {
+							// can scroll again
+							canScroll();
+						},
+						onBeforeClose : function() {
+							// don't allow to scroll
+							noScroll();
+						},
+						onAfterClose : function() {
+							// can scroll again
+							canScroll();
+						}
+					} );
+				} );
+
+				// for demo purposes only
+				[].slice.call( document.querySelectorAll( 'form button' ) ).forEach( function( bttn ) { 
+					bttn.addEventListener( 'click', function( ev ) { ev.preventDefault(); } );
+				} );
+			})();
+		</script>
+
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery.tools.min.js"></script>
+		<script type="text/javascript">
+		$(function(){
+
+ 		   $(".b").scrollable({
+				size:1,
+				items:".b ul",
+				loop:true,
+				next:".lef",
+				prev:".rig",
+				clickable:false,
+				circular:true
+			});  
+			  
+ 		   $(".b3").scrollable({
+				size:1,
+				items:".b3 ul",
+				loop:true,
+				next:".lef",
+				prev:".rig",
+				vertical:true,
+				clickable:false,
+				circular:true
+			});  
+	  
+		})
+		</script>
+
+</body>
+</html>

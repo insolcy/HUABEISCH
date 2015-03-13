@@ -1,0 +1,143 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>HBSCHOOL</title>
+<script src="../js/jquery-1.4.4.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="../css/validator.css"/>
+<script src="../js/formValidator-4.0.1.js" type="text/javascript" charset="UTF-8"></script>
+<script src="../js/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+<script language="javascript" src="../js/DateTimeMask.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.formValidator.initConfig({ formID: "form1", debug: false, submitOnce: true,
+            onError: function (msg, obj, errorlist) {
+                $("#errorlist").empty();
+                $.map(errorlist, function (msg) {
+                    $("#errorlist").append("<li>" + msg + "</li>")
+                });
+                alert(msg);
+            },
+            submitAfterAjaxPrompt: '有数据正在异步验证，请稍等...'
+        });
+
+        $("#gh").formValidator({ onShow: "请输入工号!", onFocus: "请输入12位教师工号", onCorrect: "输入正确" }).inputValidator({ min: 12, max: 12, type: "size", onError: "你输入的工号非法,请确认" })//.regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
+	    .ajaxValidator({
+	        dataType: "html",
+	        async: true,
+	        success: function (data) {
+	            if (data.indexOf("合法工号") > 0) return true;
+	            if (data.indexOf("此工号已存在,请填写其他工号!") > 0) return false;
+	            return false;
+	        },
+	        buttons: $("#button"),
+	        error: function (jqXHR, textStatus, errorThrown) { alert("服务器没有返回数据，可能服务器忙，请重试" + errorThrown); },
+	        onError: "该工号不可用，请更换工号",
+	        onWait: "正在对工号进行合法性校验，请稍候..."
+	    });
+        $("#tname").formValidator({ onShow: "请输入教师姓名", onFocus: "不能为空", onCorrect: "输入正确" }).inputValidator({ min: 1, empty: { leftEmpty: false, rightEmpty: false, emptyError: "姓名两边不能有空符号" }, onError: "姓名不能为空,请确认" });
+        $("#password1").formValidator({ onShow: "请输入密码", onFocus: "至少1个长度", onCorrect: "密码合法" }).inputValidator({ min: 1, empty: { leftEmpty: false, rightEmpty: false, emptyError: "密码两边不能有空符号" }, onError: "密码不能为空,请确认" });
+        $("#password2").formValidator({ onShow: "输再次输入密码", onFocus: "至少1个长度", onCorrect: "密码一致" }).inputValidator({ min: 1, empty: { leftEmpty: false, rightEmpty: false, emptyError: "重复密码两边不能有空符号" }, onError: "重复密码不能为空,请确认" }).compareValidator({ desID: "password1", operateor: "=", onError: "2次密码不一致,请确认" });
+        $(":radio[name='tpower']").formValidator({ tipID: "tpowerTip", onShow: "请选择权限", onFocus: "请选一个吧", onCorrect: "选择正确", defaultValue: ["1"] }).inputValidator({ min: 1, max: 1, onError: "权限忘记选了,请确认" });
+        $("#tcollege").formValidator({ onShow: "请选择院系", onFocus: "院系必须选择", onCorrect: "输入正确", defaultValue: "a" }).inputValidator({ min: 1, onError: "忘记选择院系了!" });
+        $(":radio[name='tsex']").formValidator({ tipID: "tsexTip", onShow: "请选择教师性别", onFocus: "请选一个吧", onCorrect: "输入正确", defaultValue: ["1"] }).inputValidator({ min: 1, max: 1, onError: "性别忘记选了,请确认" }); //.defaultPassed();       
+        $("#tnl").formValidator({ onShow: "请输入教师年龄（1-99岁之间）", onFocus: "只能输入1-99之间的数字哦", onCorrect: "输入正确" }).inputValidator({ min: 1, max: 99, type: "value", onErrorMin: "你输入的值必须大于等于1", onError: "年龄必须在1-99之间，请确认" });
+        $("#tzc").formValidator({ onShow: "请输入职称!", onFocus: "请输入职称", onCorrect: "输入正确" }).inputValidator({ onError: "请重新输入职称" });
+        $("#txz").formValidator({ empty: true, onShow: "请输入薪资!", onFocus: "请输入薪资", onCorrect: "输入正确", onEmpty: "薪资为空" }).inputValidator({ min: 1, max: 20, type: "size", onError: "请重新输入薪资" });
+        $("#tphone").formValidator({ empty: true, onShow: "请输入联系手机或电话，可以为空哦", onFocus: "格式例如：0577-88888888或11位手机号码", onCorrect: "输入正确", onEmpty: "不想留手机或电话了吗？" }).regexValidator({ regExp: ["tel", "mobile"], dataType: "enum", onError: "你输入的手机或电话格式不正确" });
+        $("#ms").formValidator({ empty: true, onShow: "请输入经历描述", onFocus: "描述至少要输入10个汉字或20个字符", onCorrect: "输入正确" }).inputValidator({ min: 20, onError: "你输入的描述长度不正确,请确认" });
+    });
+</script>
+<style type="text/css" media="all">
+body,div{font-size:12px;}
+</style>
+</head>
+
+<body style="font-size:12px">
+<br />
+<form action="" method="post" name="form1" id="form1">
+  
+  
+   
+  <table border="0px" style="font-size:12px" width="630px">
+    <tr> 
+      <td align="right">工号:</td>
+      <td><input type="text" id="gh" name="gh" style="width:120px"  /></td>
+      <td><div id="ghTip" style="width:250px"></div></td>
+    </tr>
+        <tr> 
+      <td align="right">姓名:</td>
+      <td><input type="text" id="tname" name="tname" style="width:120px" /></td>
+      <td><div id="tnameTip" style="width:250px"></div></td>
+    </tr>
+     <tr> 
+      <td align="right">密码:</td>
+      <td><input type="password" id="password1" name="password1" style="width:120px" /></td>
+      <td><div id="password1Tip" style="width:250px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">重复密码:</td>
+      <td><input type="password" id="password2" name="password2" style="width:120px" /></td>
+      <td><div id="password2Tip" style="width:250px"></div></td>
+    </tr>
+    <tr>
+      <td align="right">权限:</td>
+      <td><input type="radio" id="Radio1" value="1" name="tpower" />
+        教师&nbsp;&nbsp;<input type="radio" id="Radio2" value="2" name="tpower" />
+        教务管理员&nbsp;&nbsp;</td>
+      <td><div id="tpowerTip" style="width:250px"></td>
+    </tr>
+    <tr> 
+      <td align="right">所属学院:</td>
+      <td><select name="tcollege" id="tcollege" style="width:120px">
+          <option value="">－－院系－－</option>
+          <option value="a">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电信院</option>
+          <option value="b">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;软件院</option>
+        
+        </select></td>
+      <td><div id="tcollegeTip" style="width:250px"></div></td>
+    </tr>    
+    <tr> 
+      <td align="right">教师性别:</td>
+      <td><input type="radio" id="tsex" value="1" name="tsex" />
+        男&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" id="sex1" value="2" name="tsex" />
+        女</td>
+      <td><div id="tsexTip" style="width:250px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">教师年龄:</td>
+      <td><input type="text" id="tnl" name="tnl" style="width:120px"/></td>
+      <td><div id="tnlTip" style="width:250px"></div></td>
+    </tr>
+       <tr>
+      <td align="right">职称:</td>
+      <td><input type="text" id="tzc" name="tzc" style="width:120px"/></td>
+      <td><div id="tzcTip" style="width:250px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">薪资:</td>
+      <td><input type="text" id="txz" name="txz" style="width:120px"  /></td>
+      <td><div id="txzTip" style="width:300px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">手机或电话:</td>
+      <td><input type="text" id="tphone" name="tphone" style="width:120px" /></td>
+      <td><div id="tphoneTip" style="width:250px"></div></td>
+    </tr>
+     <tr> 
+      <td align="right" valign="top">经历描述:</td>
+      <td colspan="2" valign="top"> <textarea id="ms" name="ms" cols="50" rows="10">这里是十个中文字符哦....</textarea> <div id="msTip" style="width:250px"></div>
+      </td>
+     
+    </tr>
+  
+    <tr> 
+      <td colspan="3" align="center"><br/></td>
+    </tr>
+    <tr> 
+      <td colspan="3" align="center"><input type="submit" name="button" id="button" value="提交" /></td>
+    </tr>
+  </table>
+   
+</form>
+</body>
+</html>

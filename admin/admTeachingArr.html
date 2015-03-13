@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>学生信息管理</title>
+		<meta http-equiv="Content-Language" content="zh-cn">
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/component.css" />
+		<link rel="stylesheet" type="text/css" href="../css/content.css" />
+		<link rel="stylesheet" href="../css/gbtags.css">	
+		<link href="../css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" href="../css/ui.tabs.css" type="text/css" media="print, projection, screen">
+		<SCRIPT LANGUAGE="JavaScript" src="site.js"></SCRIPT>
+		<link type="text/css" rel="stylesheet" href="../css/validator.css"></link>
+		<script src="../js/jquery-1.4.4.min.js" type="text/javascript"></script>
+		<script src="../js/formValidator-4.0.1.js" type="text/javascript" charset="UTF-8"></script>
+		<script src="../js/ui.tabs.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#container-1').fadeIn("fast"); 
+				$('#container-1 ul').tabs({
+					show: function() {
+						var li_index = $('#container-1 ul').tabsSelected();
+						if(li_index==2){document.frames( "iframe6").reloadAutoTip();}
+					}
+				});
+			});
+		</script>
+		<script src="../js/modernizr.custom.js"></script>
+</head>
+
+
+<!--这里写JSP-->
+
+<body>
+
+
+
+<div class="morph-button morph-button-sidebar morph-button-fixed">
+			<button type="button"><span class="icon icon-cog">Settings Menu</span></button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-sidebar">
+						<span class="icon icon-close">Close the overlay</span>
+						<h2>Menu</h2>
+						<ul>
+							<li><a class="icon icon-camera" href="#">首页</a></li>
+							<li><a class="icon icon-server" href="#">选课</a></li>
+							<li><a class="icon icon-heart" href="#">奖惩信息</a></li>
+							<li><a class="icon icon-zoom-in" href="#">成绩考核</a></li>
+							<li><a class="icon icon-microphone" href="#">个人信息</a></li>
+							<li><a class="icon icon-briefcase" href="#">课表查询</a></li>
+							<li><a class="icon icon-globe" href="#">注销</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+</div>
+
+      <div class="panel-body" style="margin:90px 0px;margin-left:160px">
+        <div class="container">
+          <ul class="col-md-offset-2">
+           <form class="form-horizontal" role="form" style="width:600px">
+         
+            <div class="input-group input-group-custom"  style="margin-bottom:20px">
+             <span class="input-group-addon" >课程名&nbsp&nbsp&nbsp</span>
+             <input type="text" class="form-control form-control-custom">
+           </div>
+        
+                 
+            <div class="input-group input-group-custom" style="margin-bottom:20px">
+             <span class="input-group-addon">学&nbsp&nbsp分&nbsp&nbsp&nbsp&nbsp</span>
+             <input type="text" class="form-control form-control-custom">
+           </div>
+
+
+               
+            <div class="input-group input-group-custom" style="margin-bottom:20px">
+             <span class="input-group-addon">上课时间</span>
+             <input type="text" class="form-control form-control-custom">
+           </div>
+
+
+              
+            <div class="input-group input-group-custom" style="margin-bottom:20px">
+             <span class="input-group-addon">上课地点</span>
+             <input type="text" class="form-control form-control-custom">
+           </div>
+
+           <div class="input-group input-group-custom" style="margin-bottom:20px">
+             <span class="input-group-addon">班容量&nbsp</span>
+             <input type="text" class="form-control form-control-custom">
+           </div>
+
+           <div class="input-group input-group-custom" style="margin-bottom:20px">
+             <span class="input-group-addon">课程简介</span>
+             <textarea class="form-control form-text" rows="3"></textarea>
+           </div>
+
+          </form>
+    <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">添加课程确认</h4>
+          </div>
+          <div class="modal-body">
+              您即将添加一门课程到选课系统中，这将会影响系统的排课。同时审核通过期间您将不能删除这门课程。您确认要添加吗？
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <a href="main2.html"><button type="button" class="btn btn-primary">确认</button></a>
+          </div>
+
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="bs-example" style="padding-bottom: 24px;margin-top:30px;margin-left:-300px">
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        添加课程
+      </button>
+    </div><!-- /example -->
+          </ul>
+        </div>
+      </div>
+
+  
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+
+		<!-- /container -->
+
+		<!-- morph-button -->
+
+<script src="../js/classie.js"></script>
+<script src="../js/uiMorphingButton_fixed.js"></script>
+<script>
+
+	(function() {	
+		var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+		// trick to prevent scrolling when opening/closing button
+		function noScrollFn() {
+			window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+		}
+
+		function noScroll() {
+			window.removeEventListener( 'scroll', scrollHandler );
+			window.addEventListener( 'scroll', noScrollFn );
+		}
+
+		function scrollFn() {
+			window.addEventListener( 'scroll', scrollHandler );
+		}
+
+		function canScroll() {
+			window.removeEventListener( 'scroll', noScrollFn );
+			scrollFn();
+		}
+
+		function scrollHandler() {
+			if( !didScroll ) {
+				didScroll = true;
+				setTimeout( function() { scrollPage(); }, 60 );
+			}
+		};
+
+		function scrollPage() {
+			scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+			didScroll = false;
+		};
+
+		scrollFn();
+
+		var UIBtnn = new UIMorphingButton( document.querySelector( '.morph-button' ), {
+			closeEl : '.icon-close',
+			onBeforeOpen : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterOpen : function() {
+				// can scroll again
+				canScroll();
+			},
+			onBeforeClose : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterClose : function() {
+				// can scroll again
+				canScroll();
+			}
+		} );
+
+		document.getElementById( 'terms' ).addEventListener( 'change', function() {
+			UIBtnn.toggle();
+		} );
+	})();
+</script>
+
+
+
+</body>
+</html>

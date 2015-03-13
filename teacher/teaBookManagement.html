@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>教材管理</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/component.css" />
+		<link rel="stylesheet" type="text/css" href="../css/content.css" />
+		<link rel="stylesheet" href="../css/gbtags.css">
+		<script src="../js/modernizr.custom.js"></script>
+		<style type="text/css">  
+			input.text{text-align:center;padding:5px;width:300px;margin:5px; margin-bottom:10px;margin-left: 75px}  
+		</style>  
+
+</head>
+
+
+<!--这里写JSP-->
+
+<body>
+<H2>请输入课程所用教程</H2>
+<dl>
+	<dt> <i class="fa fa-reword"></i> java技术</dt>
+	<dd> 	
+		<input class="text" type="text"></input>
+		<div align="center">
+		<button type="button">提交</button>
+		</div>
+	</dd>
+	<dt><i class="fa fa-punishment"></i>系统结构</dt>
+	<dd> 			
+		<input class="text" type="text"></input>
+		<div align="center">
+		<button type="button">提交</button>
+		</div>
+	</dd>
+	
+</dl>
+<div class="morph-button morph-button-sidebar morph-button-fixed">
+			<button type="button"><span class="icon icon-cog">Settings Menu</span></button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-sidebar">
+						<span class="icon icon-close">Close the overlay</span>
+						<h2>Menu</h2>
+						<ul>
+							<li><a class="icon icon-camera" href="#">首页</a></li>
+							<li><a class="icon icon-server" href="#">课表信息</a></li>
+							<li><a class="icon icon-heart" href="#">成绩管理</a></li>
+							<li><a class="icon icon-zoom-in" href="#">教材管理</a></li>
+							<li><a class="icon icon-microphone" href="#">学生评语</a></li>
+							<li><a class="icon icon-briefcase" href="#">个人信息</a></li>
+							<li><a class="icon icon-globe" href="#">注销</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+</div>
+
+		<!-- /container -->
+
+		<!-- morph-button -->
+
+<script src="../js/classie.js"></script>
+<script src="../js/uiMorphingButton_fixed.js"></script>
+<script>
+
+	(function() {	
+		var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+		// trick to prevent scrolling when opening/closing button
+		function noScrollFn() {
+			window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+		}
+
+		function noScroll() {
+			window.removeEventListener( 'scroll', scrollHandler );
+			window.addEventListener( 'scroll', noScrollFn );
+		}
+
+		function scrollFn() {
+			window.addEventListener( 'scroll', scrollHandler );
+		}
+
+		function canScroll() {
+			window.removeEventListener( 'scroll', noScrollFn );
+			scrollFn();
+		}
+
+		function scrollHandler() {
+			if( !didScroll ) {
+				didScroll = true;
+				setTimeout( function() { scrollPage(); }, 60 );
+			}
+		};
+
+		function scrollPage() {
+			scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+			didScroll = false;
+		};
+
+		scrollFn();
+
+		var UIBtnn = new UIMorphingButton( document.querySelector( '.morph-button' ), {
+			closeEl : '.icon-close',
+			onBeforeOpen : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterOpen : function() {
+				// can scroll again
+				canScroll();
+			},
+			onBeforeClose : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterClose : function() {
+				// can scroll again
+				canScroll();
+			}
+		} );
+
+		document.getElementById( 'terms' ).addEventListener( 'change', function() {
+			UIBtnn.toggle();
+		} );
+	})();
+</script>
+<script type='text/javascript' src="../js/jquery_RandP.js"></script>
+
+
+<script>
+
+$(function(){
+	$('dd').filter(':nth-child(n)').addClass('hidden');
+
+	$('dl').on('click', 'dt', function() {
+		$(this)
+			.next()
+				.slideDown(300)
+				.siblings('dd')
+					.slideUp(300);
+	});
+	
+	generateFont();
+});
+
+</script>
+</body>
+</html>

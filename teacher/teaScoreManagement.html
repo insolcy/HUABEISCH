@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>成绩管理</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/component.css" />
+		<link rel="stylesheet" type="text/css" href="../css/content.css" />
+		<link rel="stylesheet" href="../css/gbtags.css">
+		<script src="../js/modernizr.custom.js"></script>
+		<style type="text/css">  
+			input.text{text-align:center;padding:3px;width:90px;}  
+			textarea.text{padding:15px;width:300px;margin:2px; margin-bottom:2px;}  
+		</style>  
+
+</head>
+
+
+<!--这里写JSP-->
+
+<body>
+<H2>请按照学生表现结合考试成绩输入期末分数</H2>
+<dl>
+	<dt> <i class="fa fa-reword"></i> java技术</dt>
+	<dd> 	
+		<table border="1" bordercolor=#436EEE align=center cellspacing=1 style="margin-bottom:10px">
+		<tr align=center><td colspan="2">学号</td><td colspan="2">姓名</td><td colspan="2">考试成绩</td></tr>
+		<tr align=center><td colspan="2">3114370074</td><td colspan="2">上官哈哈</td><td colspan="2"><input class="text" type="text"></input>
+		</td>	
+		<tr align="center"><td colspan="6">该生评语</td></tr>
+		<tr><td colspan="6"><textarea class="text" type="text"></textarea></td></tr>
+		</tr>
+		<tr align=center><td colspan="2">学号</td><td colspan="2">姓名</td><td colspan="2">考试成绩</td></tr>
+		<tr align=center><td colspan="2">3114370074</td><td colspan="2">上官哈哈</td><td colspan="2"><input class="text" type="text"></input>
+		</td>
+		<tr align="center"><td colspan="6">该生评语</td></tr>
+		<tr><td colspan="6"><textarea class="text" type="text"></textarea></td></tr>
+		</tr>
+		</table>
+		<div align="center" margin-top="8px">
+		<button type="button">提交修改</button>
+		<button type="button">全部重置</button>
+		</div>
+	</dd>
+	<dt><i class="fa fa-punishment"></i>系统结构</dt>
+	<dd> 			
+		<table border="1" bordercolor=#436EEE align=center cellspacing=1 style="margin-bottom:10px">
+		<tr align=center><td colspan="2">学号</td><td colspan="2">姓名</td><td colspan="2">考试成绩</td></tr>
+		<tr align=center><td colspan="2">3114370064</td><td colspan="2">上官飞飞</td><td colspan="2"><input class="text" type="text"></input></td>
+		<tr align="center"><td colspan="6">该生评语</td></tr>
+		<tr><td colspan="6"><textarea class="text" type="text"></textarea></td></tr>
+		</tr>
+		<tr align=center><td colspan="2">3114370074</td><td colspan="2">上官哈哈</td><td colspan="2"><input class="text" type="text"></input>
+		</td>
+		<tr align="center"><td colspan="6">该生评语</td></tr>
+		<tr><td colspan="6"><textarea class="text" type="text"></textarea></td></tr>
+		</tr>
+		</table>
+		<div align="center" margin-top="8px">
+		<button type="button">提交修改</button>
+		<button type="button">全部重置</button>
+		</div>
+	</dd>
+	
+</dl>
+<div class="morph-button morph-button-sidebar morph-button-fixed">
+			<button type="button"><span class="icon icon-cog">Settings Menu</span></button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-sidebar">
+						<span class="icon icon-close">Close the overlay</span>
+						<h2>Menu</h2>
+						<ul>
+							<li><a class="icon icon-camera" href="#">首页</a></li>
+							<li><a class="icon icon-server" href="#">课表信息</a></li>
+							<li><a class="icon icon-heart" href="#">成绩管理</a></li>
+							<li><a class="icon icon-zoom-in" href="#">教材管理</a></li>
+							<li><a class="icon icon-microphone" href="#">学生评语</a></li>
+							<li><a class="icon icon-briefcase" href="#">个人信息</a></li>
+							<li><a class="icon icon-globe" href="#">注销</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+</div>
+
+		<!-- /container -->
+
+		<!-- morph-button -->
+
+<script src="../js/classie.js"></script>
+<script src="../js/uiMorphingButton_fixed.js"></script>
+<script>
+
+	(function() {	
+		var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+		// trick to prevent scrolling when opening/closing button
+		function noScrollFn() {
+			window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+		}
+
+		function noScroll() {
+			window.removeEventListener( 'scroll', scrollHandler );
+			window.addEventListener( 'scroll', noScrollFn );
+		}
+
+		function scrollFn() {
+			window.addEventListener( 'scroll', scrollHandler );
+		}
+
+		function canScroll() {
+			window.removeEventListener( 'scroll', noScrollFn );
+			scrollFn();
+		}
+
+		function scrollHandler() {
+			if( !didScroll ) {
+				didScroll = true;
+				setTimeout( function() { scrollPage(); }, 60 );
+			}
+		};
+
+		function scrollPage() {
+			scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+			didScroll = false;
+		};
+
+		scrollFn();
+
+		var UIBtnn = new UIMorphingButton( document.querySelector( '.morph-button' ), {
+			closeEl : '.icon-close',
+			onBeforeOpen : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterOpen : function() {
+				// can scroll again
+				canScroll();
+			},
+			onBeforeClose : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterClose : function() {
+				// can scroll again
+				canScroll();
+			}
+		} );
+
+		document.getElementById( 'terms' ).addEventListener( 'change', function() {
+			UIBtnn.toggle();
+		} );
+	})();
+</script>
+<script type='text/javascript' src="../js/jquery_RandP.js"></script>
+
+
+<script>
+
+$(function(){
+	$('dd').filter(':nth-child(n)').addClass('hidden');
+
+	$('dl').on('click', 'dt', function() {
+		$(this)
+			.next()
+				.slideDown(300)
+				.siblings('dd')
+					.slideUp(300);
+	});
+	
+	generateFont();
+});
+
+</script>
+</body>
+</html>

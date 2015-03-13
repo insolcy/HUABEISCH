@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>你走错了地方！</title>
+
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="stylesheet" type="text/css" href="css/content.css" />
+    <script src="js/modernizr.custom.js"></script>
+
+</head>
+
+
+  <body>
+<div class="morph-button morph-button-sidebar morph-button-fixed">
+      <button type="button"><span class="icon icon-cog">Settings Menu</span></button>
+      <div class="morph-content">
+        <div>
+          <div class="content-style-sidebar">
+            <span class="icon icon-close">Close the overlay</span>
+            <h2>Settings</h2>
+            <ul>
+              <li><a class="icon icon-heart" href="#">HomePage</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+</div>
+<script src="js/classie.js"></script>
+    <script src="js/uiMorphingButton_fixed.js"></script>
+  <div style="text-align:center;clear:both;">
+<script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+<script src="/follow.js" type="text/javascript"></script>
+</div>
+  <div class="wrapper">
+    <div class="border-circle" id="one"></div>
+    <div class="border-circle" id="two"></div>
+    <div class="background-circle">
+      <div class="triangle-light"></div>
+      <div class="body"></div>
+      <span class="shirt-text">你</span>
+      <span class="shirt-text">♥</span>
+      <span class="shirt-text">权限</span>
+      <span class="shirt-text">不够</span>
+      <span class="shirt-text">哦</span>
+      <div class="triangle-dark"></div>
+    </div>
+    <div class="head">
+      <div class="ear" id="left"></div>
+      <div class="ear" id="right"></div>
+      <div class="hair-main">
+        <div class="sideburn" id="left"></div>
+        <div class="sideburn" id="right"></div>
+        <div class="hair-top"></div>
+      </div>
+      <div class="face">
+        <div class="hair-bottom"></div>
+        <div class="nose"></div>
+        <div class="eye-shadow" id="left">
+          <div class="eyebrow"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="eye-shadow" id="right">
+          <div class="eyebrow"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="mouth"></div>
+        <div class="shadow-wrapper">
+          <div class="shadow"></div>
+        </div>
+      </div>
+    </div>
+    <span class="music-note" id="one">&#9835;</span>
+    <span class="music-note" id="two">&#9834;</span>
+  </div>
+
+    <script>
+     
+      (function() { 
+        var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+        // trick to prevent scrolling when opening/closing button
+        function noScrollFn() {
+          window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+        }
+
+        function noScroll() {
+          window.removeEventListener( 'scroll', scrollHandler );
+          window.addEventListener( 'scroll', noScrollFn );
+        }
+
+        function scrollFn() {
+          window.addEventListener( 'scroll', scrollHandler );
+        }
+
+        function canScroll() {
+          window.removeEventListener( 'scroll', noScrollFn );
+          scrollFn();
+        }
+
+        function scrollHandler() {
+          if( !didScroll ) {
+            didScroll = true;
+            setTimeout( function() { scrollPage(); }, 60 );
+          }
+        };
+
+        function scrollPage() {
+          scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+          didScroll = false;
+        };
+
+        scrollFn();
+
+        var UIBtnn = new UIMorphingButton( document.querySelector( '.morph-button' ), {
+          closeEl : '.icon-close',
+          onBeforeOpen : function() {
+            // don't allow to scroll
+            noScroll();
+          },
+          onAfterOpen : function() {
+            // can scroll again
+            canScroll();
+          },
+          onBeforeClose : function() {
+            // don't allow to scroll
+            noScroll();
+          },
+          onAfterClose : function() {
+            // can scroll again
+            canScroll();
+          }
+        } );
+
+        document.getElementById( 'terms' ).addEventListener( 'change', function() {
+          UIBtnn.toggle();
+        } );
+      })();  </script>
+</body>
+</html>
+
+</body>
+
+</html>

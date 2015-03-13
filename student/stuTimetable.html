@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<title>学生成绩信息</title>
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="../css/component.css" />
+		<link rel="stylesheet" type="text/css" href="../css/content.css" />
+		<link rel="stylesheet" href="../css/gbtags.css">
+		<script src="../js/modernizr.custom.js"></script>
+</head>
+
+
+<!--这里写JSP-->
+
+<body>
+<table border="1" bordercolor=#436EEE align=center cellspacing=1 margin-top="200px">
+<caption>课程表</caption>
+<tr align=center><td>项目</td><td colspan="5">上课</td><td colspan="2">休息</td></tr>
+<tr align=center><td>星期</td><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></tr>
+<tr align=center><td rowspan="4">上午</td><td>语文<br/>教室：A403</td><td>数学</td><td>英语</td><td>物理</td><td>计算机</td><td>计算机</td><td rowspan="4">休息</td></tr>
+<tr align=center><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td></tr>
+<tr align=center><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></tr>
+<tr align=center><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></tr>
+<tr align=center><td rowspan=2>下午</td><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td rowspan="2">休息
+
+</td>
+<tr align=center><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td></tr>
+</table>
+<div class="morph-button morph-button-sidebar morph-button-fixed">
+			<button type="button"><span class="icon icon-cog">Settings Menu</span></button>
+			<div class="morph-content">
+				<div>
+					<div class="content-style-sidebar">
+						<span class="icon icon-close">Close the overlay</span>
+						<h2>Menu</h2>
+						<ul>
+							<li><a class="icon icon-camera" href="#">首页</a></li>
+							<li><a class="icon icon-server" href="#">选课</a></li>
+							<li><a class="icon icon-heart" href="#">奖惩信息</a></li>
+							<li><a class="icon icon-zoom-in" href="#">成绩考核</a></li>
+							<li><a class="icon icon-microphone" href="#">个人信息</a></li>
+							<li><a class="icon icon-briefcase" href="#">课表查询</a></li>
+							<li><a class="icon icon-globe" href="#">注销</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+</div>
+
+		<!-- /container -->
+
+		<!-- morph-button -->
+
+<script src="../js/classie.js"></script>
+<script src="../js/uiMorphingButton_fixed.js"></script>
+<script>
+
+	(function() {	
+		var docElem = window.document.documentElement, didScroll, scrollPosition;
+
+		// trick to prevent scrolling when opening/closing button
+		function noScrollFn() {
+			window.scrollTo( scrollPosition ? scrollPosition.x : 0, scrollPosition ? scrollPosition.y : 0 );
+		}
+
+		function noScroll() {
+			window.removeEventListener( 'scroll', scrollHandler );
+			window.addEventListener( 'scroll', noScrollFn );
+		}
+
+		function scrollFn() {
+			window.addEventListener( 'scroll', scrollHandler );
+		}
+
+		function canScroll() {
+			window.removeEventListener( 'scroll', noScrollFn );
+			scrollFn();
+		}
+
+		function scrollHandler() {
+			if( !didScroll ) {
+				didScroll = true;
+				setTimeout( function() { scrollPage(); }, 60 );
+			}
+		};
+
+		function scrollPage() {
+			scrollPosition = { x : window.pageXOffset || docElem.scrollLeft, y : window.pageYOffset || docElem.scrollTop };
+			didScroll = false;
+		};
+
+		scrollFn();
+
+		var UIBtnn = new UIMorphingButton( document.querySelector( '.morph-button' ), {
+			closeEl : '.icon-close',
+			onBeforeOpen : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterOpen : function() {
+				// can scroll again
+				canScroll();
+			},
+			onBeforeClose : function() {
+				// don't allow to scroll
+				noScroll();
+			},
+			onAfterClose : function() {
+				// can scroll again
+				canScroll();
+			}
+		} );
+
+		document.getElementById( 'terms' ).addEventListener( 'change', function() {
+			UIBtnn.toggle();
+		} );
+	})();
+</script>
+
+</body>
+</html>

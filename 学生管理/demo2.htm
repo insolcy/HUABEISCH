@@ -1,0 +1,110 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>HBSCHOOL</title>
+<script src="jquery-1.4.4.js" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="style/validator.css"/>
+<script src="formValidator-4.0.1.js" type="text/javascript" charset="UTF-8"></script>
+<script src="formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+<script language="javascript" src="DateTimeMask.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.formValidator.initConfig({ formID: "form1", debug: false, submitOnce: true,
+            onError: function (msg, obj, errorlist) {
+                $("#errorlist").empty();
+                $.map(errorlist, function (msg) {
+                    $("#errorlist").append("<li>" + msg + "</li>")
+                });
+                alert(msg);
+            },
+            submitAfterAjaxPrompt: '有数据正在异步验证，请稍等...'
+        });
+
+        $("#us").formValidator({ onShow: "请输入用户名!", onFocus: "用户名至少5个字符,最多10个字符", onCorrect: "该用户名可以注册" }).inputValidator({ min: 5, max: 10, type: "size", onError: "你输入的用户名非法,请确认" })//.regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
+	    .ajaxValidator({
+	        dataType: "html",
+	        async: true,
+	        success: function (data) {
+	            if (data.indexOf("此用户名可以注册!") > 0) return true;
+	            if (data.indexOf("此用户名已存在,请填写其它用户名!") > 0) return false;
+	            return false;
+	        },
+	        buttons: $("#button"),
+	        error: function (jqXHR, textStatus, errorThrown) { alert("服务器没有返回数据，可能服务器忙，请重试" + errorThrown); },
+	        onError: "该用户名不可用，请更换用户名",
+	        onWait: "正在对用户名进行合法性校验，请稍候..."
+	    });
+
+	    $("#roomno").formValidator({ tipID: "roomTip", onShow: "请输入的房间号", onFocus: "只能输入数字哦", onCorrect: "恭喜你,你输对了" }).inputValidator({ min: 1, max: 1000, type: "value", onError: "请重新输入宿舍号" });
+
+        $("#buding").formValidator({ tipID: "bdTip", onShow: "请选择学生宿舍楼号", onFocus: "宿舍楼号必须选择", onCorrect: "谢谢你的配合", defaultValue: "a1" }).inputValidator({ min: 1, onError: "你是不是忘记选择宿舍楼号了!" });
+        $("#bedno").formValidator({ tipID: "bedTip", onShow: "请选择学生的床位号", onFocus: "床位号必须选择", onCorrect: "谢谢你的配合", defaultValue: "a" }).inputValidator({ min: 1, onError: "你是不是忘记选择床位号了!" });
+    });
+</script>
+<style type="text/css" media="all">
+body,div{font-size:12px;}
+</style>
+</head>
+
+<body>
+<br />
+<form action="" method="post" name="form1" id="form1">
+  
+  <table border="0px" style="font-size:12px" width="630px">
+    <tr> 
+      <td align="right">学号:</td>
+      <td><input type="text" id="us" name="us" style="width:120px"  /></td>
+      <td><div id="usTip" style="width:250px"></div></td>
+     
+    </tr>
+   
+    <tr> 
+      <td align="right">宿舍楼号:</td>
+      <td><select name="buding" id="buding" style="width:120px">
+          <option value="">－－－宿舍楼号－－－</option>
+          <option value="a1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东1</option>
+          <option value="b1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东2</option>
+          <option value="c1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东3</option>
+          <option value="d1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东4</option>
+          <option value="e1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东5</option>
+          <option value="d1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东6</option>
+          <option value="g1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东7</option>
+        </select></td>
+      <td><div id="bdTip" style="width:250px"></div></td>
+    </tr>
+
+
+ 
+    <tr> 
+      <td align="right">房间号:</td>
+      <td><input type="text" id="roomno" name="roomno" style="width:120px"/></td>
+      <td><div id="roomTip" style="width:250px"></div></td>
+    </tr>
+
+    <tr>
+      <td align="right">床位号:</td>
+      <td><select name="bedno" id="bedno" style="width:120px">
+          <option value="">－－－床位号－－－</option>
+          <option value="a">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1</option>
+          <option value="b">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</option>
+          <option value="c">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</option>
+          <option value="d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4</option>
+        </select> </td>
+      <td><div id="bedTip" style="width:250px"></div></td>
+    </tr>
+      
+      <tr> 
+      <td colspan="3" align="center"><br/></td>
+    </tr>
+    <tr> 
+      <td colspan="3" align="center"><br/></td>
+    </tr>
+    <tr> 
+      <td colspan="3" align="center"><input type="submit" name="button" id="button" value="提交" /></td>
+    </tr>
+  </table>
+  
+</form>
+
+</body>
+</html>
